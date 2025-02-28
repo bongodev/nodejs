@@ -13,3 +13,4 @@
 - [ ] Migrate to TypeScript
 - [x] Rate limiting
 - [ ] Caching
+- [x] Pagination

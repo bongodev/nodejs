@@ -6,10 +6,13 @@ const createProduct = async (productPayload) => {
   return newProduct;
 };
 
-const getAllProducts = async () => {
-  const products = await Product.find({ deleted: false }).select(
-    '_id name price image categories'
-  );
+const getProducts = async ({ page = 0, limit = 10 }) => {
+  const products = await Product.find({ deleted: false })
+    .select('_id name price image categories')
+    .skip(page * limit)
+    .limit(limit)
+    .sort({ createdAt: -1 });
+
   return products;
 };
 
@@ -32,7 +35,7 @@ const deleteProduct = async (id) => {
 module.exports = {
   createProduct,
   deleteProduct,
-  getAllProducts,
+  getProducts,
   getProductById,
   updateProduct,
 };

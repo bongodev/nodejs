@@ -9,8 +9,12 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(newProduct);
 });
 
-const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await productServices.getAllProducts();
+const getProducts = asyncHandler(async (req, res) => {
+  const { page, limit } = req.query;
+  const products = await productServices.getProducts({
+    page: parseInt(page || '0'),
+    limit: parseInt(limit || '10'),
+  });
   res.json(products);
 });
 
@@ -34,7 +38,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 module.exports = {
   createProduct,
-  getAllProducts,
+  getProducts,
   getProductById,
   updateProduct,
   deleteProduct,

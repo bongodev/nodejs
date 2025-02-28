@@ -12,7 +12,7 @@ productRouter.post(
   validatePayload(ProductSchema.omit({ _id: true })),
   productController.createProduct
 );
-productRouter.get('/', productController.getAllProducts);
+productRouter.get('/', productController.getProducts);
 productRouter.get('/:id', productController.getProductById);
 productRouter.put(
   '/:id',
