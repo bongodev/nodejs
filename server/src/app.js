@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const { default: rateLimit } = require('express-rate-limit');
 
@@ -17,6 +18,8 @@ const limiter = rateLimit({
 const port = config.PORT;
 
 const app = express();
+
+app.use(cors(config.CORS));
 
 app.use(limiter);
 
