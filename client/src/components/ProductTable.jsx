@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -30,11 +32,25 @@ const columns = [
 ];
 
 export function ProductTable() {
-  const { formattedRows } = useProducts();
+  const { productQuery } = useProducts();
+
+  const formattedRows = useMemo(
+    () =>
+      productQuery.data?.map((product, index) => ({
+        id: product._id,
+        sl: index + 1,
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+        image: product.image,
+      })),
+    [productQuery.data]
+  );
 
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
+        loading={productQuery.isLoading}
         rows={formattedRows}
         columns={columns}
         disableRowSelectionOnClick
