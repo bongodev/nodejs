@@ -1,20 +1,51 @@
-import { Box } from '@mui/material';
+import { useState } from 'react';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Box, Button, Drawer } from '@mui/material';
 
-import { ProductTable } from './components';
+import { ProductForm, ProductTable } from './components';
 
 import './App.css';
+import useProducts from './hooks/useProducts';
 
-const queryClient = new QueryClient();
+const productPlaceholder = {
+  name: '',
+  description: '',
+  price: 0,
+  quantity: 0,
+  image: '',
+};
 
 function App() {
+  const [open, setOpen] = useState(false);
+  const { productCreateMutation } = useProducts();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Box>
-        <ProductTable />
+    <Box>
+      <Box
+        width="100%"
+        display="flex"
+        justifyContent="flex-end"
+        p={2}
+        onClick={() => setOpen(true)}
+      >
+        <Button variant="contained" color="primary">
+          Add Product
+        </Button>
       </Box>
-    </QueryClientProvider>
+      <ProductTable />
+      <Drawer anchor={'right'} open={open} onClose={() => setOpen(false)}>
+        <Box width={600} p={2}>
+          <ProductForm
+            placeholder={productPlaceholder}
+            onSubmit={(payload) =>
+              productCreateMutation
+                .mutateAsync(payload)
+                .finally(() => setOpen(false))
+            }
+          />
+        </Box>
+      </Drawer>
+    </Box>
   );
 }
 
