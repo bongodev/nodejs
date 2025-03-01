@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
 import useProducts from '../hooks/useProducts';
+import { Button } from '@mui/material';
 
 const columns = [
   { field: 'sl', headerName: 'SL', width: 90 },
@@ -29,6 +30,21 @@ const columns = [
     headerName: 'Image',
     width: 160,
   },
+  {
+    field: 'action',
+    headerName: 'Action',
+    headerAlign: 'center',
+    flex: 1,
+    sortable: false,
+    renderCell: () => {
+      return (
+        <Box display="flex" justifyContent="center" gap={1}>
+          <Button>Edit</Button>
+          <Button>Delete</Button>
+        </Box>
+      );
+    },
+  }
 ];
 
 export function ProductTable() {
