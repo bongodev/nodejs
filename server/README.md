@@ -7,8 +7,8 @@
 - [x] Validation middleware
 - [ ] File upload
 - [ ] Authentication
-- [ ] Logging
-- [ ] Lint
+- [x] Logging
+- [x] Lint
 - [x] environment variables
 - [ ] Dockerize app
 - [ ] Migrate to TypeScript
@@ -16,4 +16,3 @@
 - [-] Caching
 - [x] Pagination
 - [ ] Unit Testing
-

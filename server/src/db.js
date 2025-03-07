@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 const config = require('./config');
+const logger = require('./config/logger');
 
 const connectDB = async () => {
-  console.log('Connecting mongodb...');
+  logger.info('Connecting mongodb...');
   try {
     await mongoose.connect(config.db.MONGO_URI, {
       dbName: config.db.MONGO_DB_NAME,
     });
 
-    console.log('MongoDB connected successfully');
+    logger.info('MongoDB connected successfully');
   } catch (error) {
-    console.error(`MongoDB connection failed!! ${error}`);
+    logger.error(`MongoDB connection failed!! ${error}`);
   }
 };
 
