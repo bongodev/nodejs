@@ -19,9 +19,11 @@ const ProductSchema = z.object({
   price: z.number(),
   quantity: z.number().optional().default(0),
   categories: z.array(z.string()).optional().default([]),
-  metadata: z.object({
-    isFeatured: z.boolean().optional().default(false),
-  }).optional(),
+  metadata: z
+    .object({
+      isFeatured: z.boolean().optional().default(false),
+    })
+    .optional(),
   reviews: z.array(ReviewSchema).optional(),
 });
 

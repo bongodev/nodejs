@@ -10,14 +10,14 @@ const productRouter = express.Router();
 productRouter.post(
   '/',
   validatePayload(ProductSchema.omit({ _id: true })),
-  productController.createProduct
+  productController.createProduct,
 );
 productRouter.get('/', productController.getProducts);
 productRouter.get('/:id', productController.getProductById);
 productRouter.put(
   '/:id',
   validatePayload(ProductSchema.partial()),
-  productController.updateProduct
+  productController.updateProduct,
 );
 productRouter.delete('/:id', productController.deleteProduct);
 

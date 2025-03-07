@@ -27,7 +27,7 @@ const updateProduct = async (id, payload) => {
 const deleteProduct = async (id) => {
   await Product.findOneAndUpdate(
     { _id: id },
-    { deleted: true, deletedAt: new Date() }
+    { deleted: true, deletedAt: new Date() },
   );
   return true;
 };
