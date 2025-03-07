@@ -32,17 +32,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.status(204).end();
 });
 
-const searchProductByName = asyncHandler( async (req, res) => {
-  const { name } = req.query;
-  const product = await productServices.searchProductByName(name);
-  res.json(product);
-});
-
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
   updateProduct,
   deleteProduct,
-  searchProductByName,
 };
