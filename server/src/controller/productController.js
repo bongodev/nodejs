@@ -1,10 +1,9 @@
 const asyncHandler = require('express-async-handler');
 
-const { ProductSchema } = require('../schema');
-
 const { productServices } = require('../service');
 
 const createProduct = asyncHandler(async (req, res) => {
+  console.log('req.body', req.body);
   const newProduct = await productServices.createProduct(req.body);
   res.status(201).json(newProduct);
 });

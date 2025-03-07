@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const { NotFoundError } = require('../errors');
 
+// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   if (err instanceof z.ZodError) {
     return res.status(400).send(err.errors);

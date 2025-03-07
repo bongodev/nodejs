@@ -8,7 +8,7 @@ const config = {
   },
   CORS: {
     ORIGIN: process.env.CORS_ORIGIN,
-  }
+  },
 };
 
 module.exports = config;

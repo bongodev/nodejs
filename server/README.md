@@ -8,9 +8,12 @@
 - [ ] File upload
 - [ ] Authentication
 - [ ] Logging
+- [ ] Lint
 - [x] environment variables
 - [ ] Dockerize app
 - [ ] Migrate to TypeScript
 - [x] Rate limiting
-- [ ] Caching
+- [-] Caching
 - [x] Pagination
+- [ ] Unit Testing
+
