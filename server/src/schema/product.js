@@ -27,7 +27,14 @@ const ProductSchema = z.object({
   reviews: z.array(ReviewSchema).optional(),
 });
 
+const CreateProductPayload = z.object({
+  ...ProductSchema.pick({ name: true, description: true, image: true }).shape,
+  price: z.union([z.number(), z.string().transform(Number)]),
+  quantity: z.union([z.number(), z.string().transform(Number)]).default(0),
+});
+
 module.exports = {
+  CreateProductPayload,
   ProductSchema,
   ReviewSchema,
 };

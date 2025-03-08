@@ -9,6 +9,9 @@ const config = {
   CORS: {
     ORIGIN: process.env.CORS_ORIGIN,
   },
+  FILE_SERVER: {
+    UPLOAD_DIR: '/tmp/uploads',
+  },
 };
 
 module.exports = config;

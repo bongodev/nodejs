@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
 
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { Box, Button, DataGrid } from '../ui';
 
 import useProducts from '../hooks/useProducts';
-import { Button } from '@mui/material';
+import appConfig from '../config/appConfig';
 
 const columns = [
   { field: 'sl', headerName: 'SL', width: 90 },
@@ -28,7 +27,19 @@ const columns = [
   {
     field: 'image',
     headerName: 'Image',
-    width: 160,
+    flex: 1,
+    renderCell: ({ row }) => {
+      console.log(row);
+      return (
+        <Box height={200}>
+          <img
+            src={`${appConfig.BASE_URL}${row.image}`}
+            alt={row.name}
+            style={{ height: '200px' }}
+          />
+        </Box>
+      );
+    },
   },
   {
     field: 'action',
@@ -44,7 +55,7 @@ const columns = [
         </Box>
       );
     },
-  }
+  },
 ];
 
 export function ProductTable() {
@@ -70,6 +81,7 @@ export function ProductTable() {
         rows={formattedRows}
         columns={columns}
         disableRowSelectionOnClick
+        rowHeight={200}
       />
     </Box>
   );
